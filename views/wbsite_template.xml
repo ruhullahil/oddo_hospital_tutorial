@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+      <record id="menu_patient_create_form" model="website.menu">
+            <field name="name">Patient-form</field>
+            <field name="url">/hospital/patient-form</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">40</field>
+      </record>
+
+    <template id="patient_create_form" name="Patient form">
+        <t t-call="website.layout">
+            <dev id="wrap">
+                <dev class="oe_structure">
+                    <dev class="container">
+                        <form role="form" action="/hospital/patient-thanks" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <dev class="form-group">
+                                <label for="patient_name" class="control-label">Name</label>
+                                <input type="text" name="name" t-att-value="name" id="name" class="form-control" placeholder="enter your name" required="required"/>
+
+                            </dev>
+                            <dev class="form-group">
+                                <label for="date_of_bath" class="control-label">Birth Day</label>
+                                <input type="date" name="date_of_bath" t-att-value="date_of_bath" id="date_of_bath" class="form-control" placeholder="enter your date of birth" required="required"/>
+                            </dev>
+
+                            <dev class="form-group">
+                                <label for="address" class="control-label">Address</label>
+                                <input type="text" name="address" t-att-value="address" id="address" class="form-control" placeholder="enter your address" required="required"/>
+                            </dev>
+                            <dev class="clearfix oe_login_button">
+                                <button type="submit" class="btn btn-primary pull-left">Create</button>
+                            </dev>
+
+
+                        </form>
+                    </dev>
+                </dev>
+            </dev>
+        </t>
+    </template>
+
+    <template id="patient_thank_you_view" name="Thank You ">
+        <t t-call="website.layout">
+            <dev id="wrap">
+                <dev class="oe_structure">
+                    <dev class="container">
+                     <h1>thank you </h1>
+                    </dev>
+                </dev>
+            </dev>
+        </t>
+    </template>
+
+
+
+</odoo>

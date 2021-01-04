@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="hospital.root" name="Hospital" />
+
+<!--          <menuitem id="hospital.node2" name = "Appointment" sequence="1" action = "hospital.action_appointment"/>-->
+<!--          <menuitem id="hospital.node6" name = "Dashboared" sequence="0" action = "hospital.hospital_dashboard"/>-->
+<!--          <menuitem id="hospital.node1" name = "Patient" sequence="2" action = "hospital.action_patient"/>-->
+<!--          <menuitem id="hospital.node3" name = "Doctor" sequence="3" action = "hospital.action_doctor"/>-->
+<!--          <menuitem id="hospital.node5" name = "Configurations" sequence="100"/>-->
+<!--              <menuitem id="hospital.node4" name = "settings" sequence="100" action = "hospital.action_hospital_config_settings"/>-->
+    <menuitem id="hospital.node4" name = "create appointment" parent="hospital.root" sequence="50" action = "hospital.create_appointment"/>
+    <menuitem id="hospital.node2" name = "Appointment" parent="hospital.root" sequence="5" action = "hospital.action_appointment"/>
+    <menuitem id="hospital.node6" name = "Dashboared" parent="hospital.root" sequence="0" action = "hospital.hospital_dashboard"/>
+    <menuitem id="hospital.node1" name = "Patient" parent="hospital.root" sequence="2" action = "hospital.action_patient"/>
+    <menuitem id="hospital.node3" name = "Doctor" parent="hospital.root" sequence="3" action = "hospital.action_doctor"/>
+    <menuitem id="hospital.node5" name = "Configurations" parent="hospital.root" sequence="100"/>
+    <menuitem id="hospital.node7" name = "settings"  parent="hospital.node5" sequence="100" action = "hospital.action_hospital_config_settings"/>
+    <menuitem id="hospital.node7" name = "server action"  parent="hospital.root" sequence="10" action = "hospital.action_code_call_patient"/>
+
+
+</odoo>

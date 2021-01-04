@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_code_call_patient" model="ir.actions.server">
+            <field name="name">patient action</field>
+            <field name="model_id" ref="hospital.model_hospital_patient"/>
+            <field name="binding_model_id" ref="hospital.model_hospital_patient"/>
+            <field name="state">code</field>
+            <field name="code">action = model.action_code_call_patient()</field>
+        </record>
+
+</odoo>
