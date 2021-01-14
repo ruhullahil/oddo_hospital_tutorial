@@ -8,8 +8,9 @@ class PatientCardExtend(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         print('docids __: ', docids)
-        report = self.env['hospital.patient'].browse(docids[0])
-        print('did : ', docids[0])
+
+        report = self.env['hospital.patient'].browse(docids)
+        print('did : ', docids)
         appointment = self.env['hospital.appintment'].search([])
         print('appointment', appointment)
         appointment_list = []

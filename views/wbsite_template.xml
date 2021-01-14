@@ -28,6 +28,17 @@
                                 <label for="address" class="control-label">Address</label>
                                 <input type="text" name="address" t-att-value="address" id="address" class="form-control" placeholder="enter your address" required="required"/>
                             </dev>
+
+                            <dev class="form-group">
+                                <label for="address" class="control-label">Doctor</label>
+                                <select name="doctor_id" class="form-control link-style">
+                                    <t t-foreach="doctors" t-as="doctor">
+                                        <option t-esc="doctor.name" t-att-value="doctor.id"/>
+                                    </t>
+                                </select>
+
+                            </dev>
+
                             <dev class="clearfix oe_login_button">
                                 <button type="submit" class="btn btn-primary pull-left">Create</button>
                             </dev>

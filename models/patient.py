@@ -5,7 +5,11 @@ from odoo.exceptions import ValidationError
 
 class salesUser(models.Model):
     _inherit = "sale.order"
-    name_of_salers = fields.Char("saler name")
+    name_of_salers = fields.Char(string="sealer name")
+    this_is_for_test = fields.Char(string=" this is test purpose")
+
+    def just_use_for_test(self):
+        print('just use for test work from order')
 
 
 class ResPartner(models.Model):
@@ -22,6 +26,13 @@ class HospitalPatient(models.Model):
         for rec in self:
             res.append((rec.id, '%s - %s' % (rec.name, rec.p_id)))
         return res
+
+    @api.model
+    def _name_search(self, name='', args=None, operator='ilike', limit=100):
+        if args is None:
+            args = []
+        domain = args + ['|', ('p_id', operator, name), ('name', operator, name)]
+        return super(HospitalPatient, self).search(domain, limit=limit).name_get()
 
     def _cron_start(self):
         print("corn work")
@@ -45,7 +56,29 @@ class HospitalPatient(models.Model):
         print('send mail')
         template_id = self.env.ref('hospital.patient_card_email_send').id
         template = self.env['mail.template'].browse(template_id)
-        template.send_mail(self.id, force_send=True)
+        lang = self.env.context.get('lang')
+        # template.send_mail(self.id, force_send=True)
+        ctx = {
+            'default_model': 'sale.order',
+            'default_res_id': self.ids[0],
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            'custom_layout': "mail.mail_notification_paynow",
+            'proforma': self.env.context.get('proforma', False),
+            'force_email': True,
+            # 'model_description': self.with_context(lang=lang).type_name,
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(False, 'form')],
+            'view_id': False,
+            'target': 'new',
+            'context': ctx,
+        }
 
     def action_code_call_patient(self):
         print('come action_code_call_patient ---->')
@@ -80,6 +113,7 @@ class HospitalPatient(models.Model):
     doctor_id = fields.Many2one('hospital.doctor', string="Doctor")
     doctor_gender = fields.Selection([('male', 'Male'),
                                       ('female', 'Female')], default='male', string=" Doctor Gender")
+    record_create_date = fields.Date(string="Record Create Date", required=True, default=fields.Date.context_today)
 
     def print_from_object(self):
         return self.env.ref('hospital.record_id').report_action(self)

@@ -16,6 +16,8 @@
     <menuitem id="hospital.node5" name = "Configurations" parent="hospital.root" sequence="100"/>
     <menuitem id="hospital.node7" name = "settings"  parent="hospital.node5" sequence="100" action = "hospital.action_hospital_config_settings"/>
     <menuitem id="hospital.node7" name = "server action"  parent="hospital.root" sequence="10" action = "hospital.action_code_call_patient"/>
+    <menuitem id="hospital.node4" name = "Report" parent="hospital.root" sequence="1000" action = "hospital.genarate_report_all"/>
+
 
 
 </odoo>

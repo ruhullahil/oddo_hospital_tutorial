@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+    <template id="generate_all_paint_report">
+                <t t-call="web.html_container">
+                    <t t-call="web.external_layout">  <h> Name : </h>
+                            <h>     </h>
+                            <h> BirthDay : </h>
+                             <h></h>
+                            <h> address : </h>
+                             <h>     </h>
+                            <h> P_id : </h>
+                            <br/>
+                        <t t-foreach="docs" t-as="doc">
+                            report_patient_card
+                            <h> <t t-esc="doc['name']"/></h>
+                            <h>     </h>
+                            <h> <t t-esc="doc['date_of_bath']"/></h>
+                             <h>     </h>
+                            <h> <t t-esc="doc.address"/></h>
+                             <h></h>
+                            <h><t t-esc="doc.p_id"/></h>
+                            <br/>
+
+                        </t>
+                    </t>
+                </t>
+    </template>
+
+
+
+</odoo>

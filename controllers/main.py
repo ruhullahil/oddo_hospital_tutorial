@@ -89,12 +89,12 @@ class Hospital(http.Controller):
         @http.route('/hospital/patient-form', auth='public', website=True)
         def patient_form(self):
             print('come to patient form from hospitalController \n')
-            return request.render('hospital.patient_create_form', {})
+            doctor_list = request.env['hospital.doctor'].sudo().search([])
+            return request.render('hospital.patient_create_form', {'doctors': doctor_list})
 
         @http.route('/hospital/patient-thanks', auth='public', website=True)
-        def patient_thank_you(self,**kwargs):
+        def patient_thank_you(self, **kwargs):
             print('come to patient thank-you hospitalController \n')
-            print('data are :',kwargs)
+            print('data are :', kwargs)
             request.env['hospital.patient'].sudo().create(kwargs)
             return request.render('hospital.patient_thank_you_view', {})
-

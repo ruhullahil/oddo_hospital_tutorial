@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+          <record id="genarate_report_wizard_viw" model="ir.ui.view">
+            <field name="name">generate.patients.form</field>
+            <field name="model">hospital.generate.report</field>
+            <field name="arch" type="xml">
+                <form string="appointment">
+                    <group class="oe_title">
+                        <field name="start_date" />
+                        <field name="end_date" />
+                    </group>
+                    <footer>
+
+                        <button name="print_patient_names" string="Print" type="object" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="genarate_report_all" model="ir.actions.act_window">
+            <field name="name">generate report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.generate.report</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="genarate_report_wizard_viw"/>
+            <field name="target">new</field>
+        </record>
+
+</odoo>

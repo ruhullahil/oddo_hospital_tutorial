@@ -6,6 +6,12 @@ from odoo.exceptions import ValidationError
 
 class PationtAppointment(models.Model):
 
+    def name_get(self):
+        res = []
+        for rec in self:
+            res.append((rec.id, '%s' % (rec.patient_name.name)))
+        return res
+
     @api.model
     def create(self, vals):
         print("------------ : create called")
@@ -90,6 +96,8 @@ class PationtAppointment(models.Model):
                                    ('cancel', 'Cancel')], default='draft', string="Status")
     refarence = fields.Char(string="Enter ref")
     ap_note = fields.Char("ap_note")
+    company_id = fields.Many2one('res.company', string='Company', required=True,
+                                 default=lambda self: self.env.company)
 
     @api.depends('date_of_bath')
     def computer_age(self):

@@ -22,17 +22,7 @@
 
     </record>
 
-    <record id="sale_order_inharit" model="ir.ui.view">
-                <field name="name">sale.order.iniharit</field>
-                <field name="model">sale.order</field>
-                <field name="inherit_id" ref="sale.view_order_form"/>
-                <field name="arch" type="xml">
-                    <field name="partner_id" position = "after">
-                        <field name="name_of_salers"/>
-                    </field>
 
-                </field>
-        </record>
 
     <record id="patient_kanban" model="ir.ui.view">
         <field name="name">hospital.patient.kanban</field>
@@ -44,6 +34,7 @@
                 <field name="name"/>
                 <field name="date_of_bath"/>
                 <field name="address"/>
+
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hospital_patient_kanban">
@@ -138,6 +129,7 @@
                         <field name="doctor_gender" readonly="1" force_save="1"/>
                         <field name="users_id" groups="hospital.group_hospital_manager"/>
                         <field name="email" groups="hospital.group_hospital_manager"/>
+                        <field name="record_create_date" />
                     </group>
                 </sheet>
                     <div class="oe_chatter">

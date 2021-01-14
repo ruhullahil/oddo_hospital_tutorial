@@ -8,6 +8,14 @@
         <field name="report_name">hospital.patient_card_id</field>
     </record>
 
+     <record id="generate_report_all" model="ir.actions.report">
+        <field name="name">test</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hospital.generate_all_paint_report</field>
+    </record>
+
+
     <report id ="report_patient_card"
             string="report card"
             model="hospital.patient"
@@ -21,4 +29,11 @@
             report_type="xlsx"
             name="hospital.patient_card_id_xls"
             file="hospital.patient_xls_report"/>
+
+    <report id ="report_patient_card_inharet"
+            string="report card single barcode"
+            model="hospital.patient"
+            report_type="qweb-pdf"
+            name="hospital.patient_card_id_inherit"
+            file="hospital.patient_card_id_inherit"/>
 </odoo>
